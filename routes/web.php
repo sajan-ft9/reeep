@@ -17,10 +17,6 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/composer', function(){
-    return view('backend.layoutcopy');
-});
-
 Route::get('/', function () {
     // $menus = Menu::whereNull('parent_id')
     // ->where('status', 1)
@@ -29,15 +25,9 @@ Route::get('/', function () {
     // ->where('status',1)->get();
     return view('index');
 });
-Route::get('/try', function () {
-    $menus = Menu::whereNull('parent_id')
-    ->where('status', 1)
-    ->get();
-    $submenus = Menu::whereNotNull('parent_id')
-    ->where('status',1)->get();
-    return view('try', compact('menus','submenus'));
-});
+Route::get('/try',[MenuController::class, 'create']);
 Route::get('/about', function () {
+
     return view('about');
 });
 Route::get('/download_links', function () {

@@ -19,11 +19,13 @@
             <div class="card-header">
                 <h3 class="card-title">
                     <span>
-                        <button class="btn btn-info ">
-                            <a class="text-white" href="{{ route('backend.menu.create') }}">
+                        <a class="text-white" href="{{ route('backend.menu.create') }}">
+
+                            <button class="btn btn-info ">
                                 <i class="fas fa-plus"></i>
-                            </a>
-                        </button></span>
+                            </button>
+                        </a>
+                    </span>
                 </h3>
 
                 <div class="card-tools">

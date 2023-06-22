@@ -6,6 +6,8 @@ use App\Models\Menu;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnCallback;
+
 class MenuController extends Controller
 {
     /**
@@ -27,44 +29,46 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $menus = Menu::pluck('name', 'id');
+        // $menus = Menu::pluck('name', 'id');
 
-        // $menuOptions = Menu::whereNull('parent_id')->pluck('name','id');
-        // $childMenuOptions = Menu::whereNotNull('parent_id')->pluck('name', 'id');
-        // dd($menuOptions, $childMenuOptions);
-        $menuData = Menu::all()->groupBy('parent_id')->mapWithKeys(function ($items, $parent_id) {
-            return [$parent_id => $items->pluck('name', 'id')];
-        })->toArray();
-        $menuOptions = [];
-        $childMenuOptions = [];
+        // $menuData = Menu::all()->groupBy('parent_id')->mapWithKeys(function ($items, $parent_id) {
+        //     return [$parent_id => $items->pluck('name', 'id')];
+        // })->toArray();
+        // $menuOptions = [];
+        // $childMenuOptions = [];
 
-        foreach ($menuData as $parentKey => $items) {
-            if ($parentKey === "") {
-                $menuOptions = $items;
-            } else {
-                $childMenuOptions[$parentKey] = $items;
-            }
+        // foreach ($menuData as $parentKey => $items) {
+        //     if ($parentKey === "") {
+        //         $menuOptions = $items;
+        //     } else {
+        //         $childMenuOptions[$parentKey] = $items;
+        //     }
+        // }
+
+        // return view("backend.menu.create", compact('menuOptions', 'childMenuOptions'));
+
+        $allmenus = Menu::get();
+
+        $rootmenus = Menu::whereNull('parent_id')->get();
+        $result = [];
+        foreach ($rootmenus as $rootmenu) {
+            $rootmenu->children = $this->getChildren($allmenus, $rootmenu->id);
+            $result[] = $rootmenu;
         }
+        // return $result;
+       return view('backend.menu.create', compact('result'));
+    }
 
-        // $menuOptions = [
-        //     '1' => 'Home',
-        //     '2' => 'About',
-        //     '3' => 'Services',
-        //     '4' => 'Contact',
-        // ];
-
-        // $childMenuOptions = [
-        //     '2' => [
-        //         '5' => 'first_about',
-        //         '6' => 'second_about',
-        //     ],
-        //     '3' => [
-        //         '7' => 'service_1',
-        //     ],
-        // ];
-
-
-        return view("backend.menu.create", compact('menuOptions', 'childMenuOptions'));
+    private function getChildren($menus, $parentId){
+        {
+            $children = $menus->where('parent_id', $parentId)->values();
+            
+            foreach ($children as $child) {
+                $child->children = $this->getChildren($menus, $child->id);
+            }
+            
+            return $children;
+        }
     }
 
     /**

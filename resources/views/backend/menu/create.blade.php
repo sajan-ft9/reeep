@@ -53,55 +53,47 @@
                             @enderror
                         </div>
                     </div>
+
+                    <!-- resources/views/select-form.blade.php -->
                     {{-- <div class="col-md-6">
                         <div class="form-group">
-                            {!! Form::label('parent_id', 'Parent Menu') !!}
-                            {!! Form::select('parent_id', $menus, null, ['class' => 'form-control', 'placeholder' => 'Enter parent']) !!}
+                            <label for="">Parent Menu</label>
+                            <select name="parent_id" class="form-control">
+                                @foreach ($result as $item)
+                                    <option style="font-size: 18px" value="{{ $item['id'] }}">
+                                        &blacktriangleright;{{ $item['name'] }}</option>
 
-                            @error('parent_id')
+                                    @if (!empty($item['children']))
+                                        @foreach ($item['children'] as $child)
+                                            <option style="font-size: 15px" value="{{ $child['id'] }}"> &emsp;&bull;
+                                                {{ $child['name'] }}</option>
+
+                                            @if (!empty($child['children']))
+                                                @foreach ($child['children'] as $grandchild)
+                                                    <option style="font-size: 13px" value="{{ $grandchild['id'] }}">
+                                                        &emsp;&emsp; &#10140;{{ $grandchild['name'] }}</option>
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            </select>
+                            @error('order')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                     </div> --}}
-                    {{-- @php
-                        $menuOptions = [
-                            'Home' => 'Home',
-                            'About' => 'About',
-                            'Services' => 'Services',
-                            'Contact' => 'Contact',
-                        ];
-                        
-                        $childMenuOptions = [
-                            'About' => [
-                                'First About' => 'first_about',
-                                'Second About' => 'second_about',
-                            ],
-                            'Services' => [
-                                'Service 1' => 'service_1',
-                                'Service 2' => 'service_2',
-                                'Service 3' => 'service_3',
-                            ],
-                        ];
-                        
-                    @endphp --}}
                     <div class="col-md-6">
                         <div class="form-group">
-                            <!-- Parent Menu Select -->
-                            {!! Form::label('parent_menu', 'Parent Menu') !!}
-                            {!! Form::select('parent_menu', $menuOptions, null, [
-                                'class' => 'form-control',
-                                'placeholder' => 'Select Parent Menu',
-                            ]) !!}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <!-- Child Menu Select (dependent on the parent menu) -->
-                            {!! Form::label('child_menu', 'Child Menu') !!}
-                            {!! Form::select('child_menu', $childMenuOptions, null, [
-                                'class' => 'form-control',
-                                'placeholder' => 'Select Child Menu',
-                            ]) !!}
+                            <label for="">Parent Menu</label>
+                            <select name="parent_id" class="form-control">
+                                @foreach ($result as $item)
+                                    @include('partials.option', ['item' => $item, 'depth' => 0])
+                                @endforeach
+                            </select>
+                            @error('order')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -123,7 +115,7 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             var childMenuOptions = {!! json_encode($childMenuOptions) !!};
 
@@ -144,5 +136,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 @endsection
