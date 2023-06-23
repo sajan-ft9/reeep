@@ -42,6 +42,8 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Parent Name</th>
+                            <th>Order</th>
                             <th>Slug</th>
                             <th>Status</th>
                             <th colspan="2">Action</th>
@@ -51,6 +53,8 @@
                         @foreach ($menus as $menu)
                             <tr>
                                 <td>{{ $menu->name }}</td>
+                                <td>-</td>
+                                <td>{{$menu->order}}</td>
                                 <td>{{ $menu->slug }}</td>
                                 <td>
                                     <form action="{{ route('backend.menu.toggleStatus', $menu->id) }}" method="POST">
@@ -61,8 +65,11 @@
                                     </form>
                                 </td>
                                 <td class="d-flex">
-                                    <div class="btn btn-success mr-1"><i class="fas fa-eye"></i></div>
-                                    <div class="btn btn-warning text-white mr-1"><i class="fas fa-edit"></i></div>
+                                    <a href="{{ route('backend.menu.show', $menu->id) }}" class="text-decoration-none fs-4">
+                                        <div class="btn btn-success mr-1"><i class="fas fa-eye"></i></div>
+                                    </a>
+
+                                    <div class="btn btn-warning text-white mr-1"><a href="{{ route('backend.menu.edit', $menu->id) }}"><i class="fas fa-edit"></i></a></div>
                                     <form action="{{ route('backend.menu.destroy', $menu->id) }}" method="POST">
                                         @csrf
                                         @method('delete')

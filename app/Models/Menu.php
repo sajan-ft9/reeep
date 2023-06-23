@@ -10,4 +10,8 @@ class Menu extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    public function children(){
+        return $this->hasMany(Menu::class, 'parent_id');
+    }
 }

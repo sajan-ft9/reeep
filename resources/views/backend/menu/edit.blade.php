@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Menu</li>
+                        <li class="breadcrumb-item active">Edit Menu</li>
                     </ol>
                 </div>
             </div>
@@ -18,7 +18,7 @@
         <div class="card card-default">
             <div class="card-header">
                 <h3 class="card-title">
-                    Create Menu
+                    EDIT Menu
                 </h3>
 
                 <div class="card-tools">
@@ -32,13 +32,14 @@
             </div>
 
             <div class="card-body">
-                {!! Form::open(['route' => 'backend.menu.store', 'method' => 'POST']) !!}
+                {!! Form::open(['route' => ['backend.menu.update', $menu->id], 'method' => 'POST']) !!}
                 @csrf
+                @method('patch')
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('title', 'Name') !!}
-                            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'name']) !!}
+                            {!! Form::text('name',$menu->name, ['class' => 'form-control', 'placeholder' => 'name']) !!}
                             @error('name')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -47,7 +48,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('status', 'Status') !!}
-                            {!! Form::select('status', ['1' => 'Active', '0' => 'Inactive'], null, ['class' => 'form-control']) !!}
+                            {!! Form::select('status', ['1' => 'Active', '0' => 'Inactive'], $menu->status, ['class' => 'form-control']) !!}
                             @error('status')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -58,12 +59,12 @@
                         <div class="form-group">
                             <label for="">Parent Menu</label>
                             <select name="parent_id" class="form-control">
-                                <option value="">Select Parent Menu</option>
+                                <option value="">Parent Menu</option>
                                 @foreach ($result as $item)
                                     @include('partials.option', ['item' => $item, 'depth' => 0])
                                 @endforeach
                             </select>
-                            @error('order')
+                            @error('parent_id')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>

@@ -1,4 +1,3 @@
-
 @php
     $indent = str_repeat('&emsp;&emsp;', $depth);
 @endphp
@@ -6,7 +5,7 @@
 <option style="font-size: {{ $item['font-size'] }}" value="{{ $item['id'] }}">
     {!! $indent !!}
     {!! $item['bullet'] !!}
-   &triangleright; {{ $item['name'] }}
+    {{ $item['name'] }}
 </option>
 
 @if (!empty($item['children']))
