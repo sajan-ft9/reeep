@@ -7,22 +7,23 @@ use App\Http\Controllers\MenuController;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicController;
 
 
 Route::group([PublicController::class], function(){
     Route::get('/',[PublicController::class,'index']);
     Route::get('/about',[PublicController::class,'about']);
+    Route::get('/news',[PublicController::class,'news']);
+    Route::get('/news/{news}',[PublicController::class,'newsDetail'])->name('news.detail');
 });
 
 Route::get('/download_links', function () {
     return view('download_links');
 });
-Route::get('/news', function () {
-    return view('news');
-});
+
 Route::get('/news/1', function () {
-    return view('news-detail');
+    return view('public.news.detail');
 });
 Route::get('/knowledge', function () {
     return view('knowledge');
@@ -59,6 +60,9 @@ Route::prefix('backend')->name('backend.')->middleware('auth')->group(function()
 
     // about
     Route::resource('about',AboutController::class);
+
+    // news
+    Route::resource('news',NewsController::class);
 
 
 

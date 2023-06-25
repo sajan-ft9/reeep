@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Banner</h1>
+                    <h1>News</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">banner</li>
+                        <li class="breadcrumb-item active">news</li>
                     </ol>
                 </div>
             </div>
@@ -18,7 +18,7 @@
         <div class="card card-default">
             <div class="card-header">
                 <h3 class="card-title">
-                    Edit Banner
+                    Update news
                 </h3>
 
                 <div class="card-tools">
@@ -32,35 +32,51 @@
             </div>
 
             <div class="card-body">
-                {!! Form::open(['route' => ['backend.banner.update', $banner->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data' ]) !!}
-                @csrf
+                {!! Form::open(['route' => ['backend.news.update', $news->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data' ]) !!}
                 <div class="">
+                    <div class="row">
+                        <div class="col">
 
-                    <div class="form-group">
-                        {!! Form::label('title', 'Title') !!}
-                        {!! Form::text('title', $banner->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}
-                        @error('title')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                            <div class="form-group">
+                                {!! Form::label('title', 'Title') !!}
+                                {!! Form::text('title', $news->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}
+                                @error('title')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Category</label>
+                                <select name="category" class="form-control" id="" required>
+                                    <option value="">Select a Category</option>
+                                    <option value="1" {{ $news->category == 1 ?  "selected": ""  }}>News</option>
+                                    <option value="2" {{ $news->category == 2 ?  "selected": ""  }}>Activities</option>
+                                </select>
+                                @error('category')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                        </div>
                     </div>
 
 
                     <div class="form-group">
                         {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', $banner->description, ['class' => 'form-control']) !!}
+                        {!! Form::textarea('description', $news->description, ['class' => 'form-control']) !!}
                         @error('description')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
-                    
-
                     <div class="form-group">
                         <label for="">Old Image</label>
-                    <img src="{{ asset($banner->image_path) }}" height="100" alt="">
+                        <img src="{{ asset($news->image_path) }}" height="100" alt="">
                     </div>
+
                     <div class="form-group">
-                        {!! Form::label('image_path', 'New Image') !!}
+                        {!! Form::label('image_path', 'Image') !!}
                         {!! Form::file('image_path', null, ['class' => 'form-control', 'placeholder' => 'Choose Image']) !!}
                         @error('image_path')
                             <small class="text-danger">{{ $message }}</small>

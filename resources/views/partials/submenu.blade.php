@@ -6,7 +6,7 @@
     @foreach ($menuItems as $index => $menuItem)
         @if ($index < 6)
             <li class="dropdown">
-                <a href="{{ $menuItem->slug }}">
+                <a href="/{{ $menuItem->slug }}">
                     <span>{{ $menuItem->name }}</span>
                     @if ($menuItem->children && count($menuItem->children) > 0)
                         <i class="bi bi-chevron-down"></i>

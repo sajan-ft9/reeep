@@ -93,15 +93,15 @@
                     <div class="col-lg-6 ">
                         <div class="row g-2">
                             <div class="col">
-                                <img class="img-fluid w-100" style="height: 100%"
-                                    src="{{ asset($about->image_path) }}" alt="">
+                                <img class="img-fluid w-100" style="height: 100%" src="{{ asset($about->image_path) }}"
+                                    alt="">
                             </div>
                         </div>
                     </div>
                     <div class="col wow fadeIn">
 
-                        <h2 class="mb-4">{{$about->title }}</h2>
-                        <p class="mb-4">{{ substr($about->description, 0,350) }}....
+                        <h2 class="mb-4">{{ $about->title }}</h2>
+                        <p class="mb-4">{{ substr($about->description, 0, 350) }}....
                         </p>
 
                         <a class="get-started-btn  rounded-pill py-3 px-5" href="/about">Explore More</a>
@@ -242,72 +242,34 @@
                 </h2>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                    <div class="card news text-white card-has-bg click-col"
-                        style="background-image:url('{{ asset('assets/img/gov.png') }}');">
-                        <div class="card-img-overlay d-flex flex-column">
-                            <div class="card-body">
-                                <small class="card-meta mb-2">Thought Leadership</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment Lorem
-                                        Ipsum Sit Amet Consectetur
-                                        dipisi?</a></h4>
-                                <small><i class="far fa-clock"></i> October 15, 2020</small>
-                            </div>
-                            <div class="card-footer">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="my-0 text-white d-block">Oz Coruhlu</h6>
-                                        <small>Director of UI/UX</small>
+                @foreach ($news as $item)
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                        <div class="card news text-white card-has-bg click-col"
+                            style="background-image:url('{{ asset($item->image_path) }}');">
+                            <div class="card-img-overlay d-flex flex-column">
+                                <div class="card-body">
+                                    
+                                        <small
+                                            class="card-meta mb-2">{{ $item->category == 1 ? 'News' : 'Activities' }}</small>
+                                        <h4 class="card-title mt-0 "><a class="text-white"
+                                                herf="#">{{ $item->title }}</a></h4>
+                                        <small><i class="far fa-clock"></i>{{ $item->updated_at }}</small>
+                                   
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <small>{{ $item->updated_at }}</small>
+                                            <small> <a class="btn btn-primary mx-4" href="{{ route('news.detail', $item->id) }}"> Read more </a></small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                    <div class="card news text-white card-has-bg click-col"
-                        style="background-image:url('{{ asset('assets/img/gov.png') }}');">
-                        <div class="card-img-overlay d-flex flex-column">
-                            <div class="card-body">
-                                <small class="card-meta mb-2">Thought Leadership</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment Lorem
-                                        Ipsum Sit Amet Consectetur
-                                        dipisi?</a></h4>
-                                <small><i class="far fa-clock"></i> October 15, 2020</small>
-                            </div>
-                            <div class="card-footer">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="my-0 text-white d-block">Oz Coruhlu</h6>
-                                        <small>Director of UI/UX</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                    <div class="card news text-white card-has-bg click-col"
-                        style="background-image:url('{{ asset('assets/img/giz2.jpg') }}');">
-                        <div class="card-img-overlay d-flex flex-column">
-                            <div class="card-body">
-                                <small class="card-meta mb-2">Thought Leadership</small>
-                                <h4 class="card-title mt-0 "><a class="text-white" herf="#">Goverment Lorem
-                                        Ipsum Sit Amet Consectetur
-                                        dipisi?</a></h4>
-                                <small><i class="far fa-clock"></i> October 15, 2020</small>
-                            </div>
-                            <div class="card-footer">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="my-0 text-white d-block">Oz Coruhlu</h6>
-                                        <small>Director of UI/UX</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
 
