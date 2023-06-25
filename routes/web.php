@@ -1,35 +1,20 @@
 <?php
 
-use App\Models\Menu;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PublicController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    // $menus = Menu::whereNull('parent_id')
-    // ->where('status', 1)
-    // ->get();
-    // $submenus = Menu::whereNotNull('parent_id')
-    // ->where('status',1)->get();
-    return view('index');
+Route::group([PublicController::class], function(){
+    Route::get('/',[PublicController::class,'index']);
+    Route::get('/about',[PublicController::class,'about']);
 });
-Route::get('/try',[MenuController::class, 'create']);
-Route::get('/about', function () {
 
-    return view('about');
-});
 Route::get('/download_links', function () {
     return view('download_links');
 });
@@ -69,6 +54,12 @@ Route::prefix('backend')->name('backend.')->middleware('auth')->group(function()
     Route::resource('menu',MenuController::class);
     Route::patch('/menu_status/{menu}',[MenuController::class, 'toggleStatus'])->name('menu.toggleStatus');
 
+    // banner
+    Route::resource('banner',BannerController::class);
+
     // about
+    Route::resource('about',AboutController::class);
+
+
 
 });
