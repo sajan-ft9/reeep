@@ -60,7 +60,7 @@
                             <select name="parent_id" class="form-control">
                                 <option value="">Select Parent Menu</option>
                                 @foreach ($result as $item)
-                                    @include('partials.option', ['item' => $item, 'depth' => 0])
+                                    @include('partials.option', ['item' => $item, 'parent_id'=>"", 'depth' => 0])
                                 @endforeach
                             </select>
                             @error('order')

@@ -53,7 +53,7 @@
                         @foreach ($menus as $menu)
                             <tr>
                                 <td>{{ $menu->name }}</td>
-                                <td>-</td>
+                                <td>{{$menu->parent->name ?? "-"}}</td>
                                 <td>{{$menu->order}}</td>
                                 <td>{{ $menu->slug }}</td>
                                 <td>

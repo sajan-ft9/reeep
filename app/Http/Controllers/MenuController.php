@@ -14,6 +14,7 @@ class MenuController extends Controller
 
 
         $menus = Menu::with('children')->whereNull('parent_id')->orderBy('order')->get();
+        
 
         return view('backend.menu.index', compact('menus'));
     }
@@ -80,6 +81,10 @@ class MenuController extends Controller
 
     public function destroy(Menu $menu)
     {
+        $menu_childs = Menu::where('parent_id', "$menu->id")->get();
+        foreach($menu_childs as $item){
+           $item->update(['parent_id'=>null]);           
+        }
         $menu->delete();
         return redirect()->back()->with('success', 'Menu deleted successfully');
     }

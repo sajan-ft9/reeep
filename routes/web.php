@@ -68,4 +68,7 @@ Route::prefix('backend')->name('backend.')->middleware('auth')->group(function()
     // menu
     Route::resource('menu',MenuController::class);
     Route::patch('/menu_status/{menu}',[MenuController::class, 'toggleStatus'])->name('menu.toggleStatus');
+
+    // about
+
 });

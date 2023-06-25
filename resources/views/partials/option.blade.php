@@ -1,11 +1,11 @@
 @php
-    $indent = str_repeat('&emsp;&emsp;', $depth);
+    $indent = str_repeat('&emsp;', $depth);
 @endphp
 
-<option style="font-size: {{ $item['font-size'] }}" value="{{ $item['id'] }}">
+<option value="{{ $item->id }}" {{ $item->id == $parent_id ? 'selected' : '' }}>
     {!! $indent !!}
-    {!! $item['bullet'] !!}
-    {{ $item['name'] }}
+    {{ $item->name }}
+
 </option>
 
 @if (!empty($item['children']))
