@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use App\Models\About;
 use App\Models\Banner;
-use App\Models\News;
+use App\Models\Partner;
+use App\Models\Working;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
     public function index(){
-        $banners = Banner::get();
+        $data['banners'] = Banner::get();
         $about = About::take(1)->first();
-        $news = News::take(3)->get();
-        return view('public.index', compact('banners', 'about', 'news'));
+        $data['news'] = News::take(3)->get();
+        $data['workings'] = Working::take(5)->get();
+        $data['partners'] = Partner::take(3)->get();
+        return view('public.index', compact('data','about'));
     }
     
     public function about(){
@@ -38,5 +42,29 @@ class PublicController extends Controller
     
         return view('public.news.detail', compact('news', 'recent_news'));
     }
+
+    public function working(){
+        $workings = Working::get();
+       
+        return view('public.working.index', compact('workings'));
+    }
+
+    public function workingDetail(Working $working){
+
+        return view('public.working.detail', compact('working'));
+    }
+
+    public function partner(){
+        $partners = Partner::get();
+       
+        return view('public.partner.index', compact('partners'));
+    }
+
+    public function partnerDetail(Partner $partner){
+
+        return view('public.partner.detail', compact('partner'));
+    }
+
+
 
 }

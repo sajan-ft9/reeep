@@ -24,7 +24,7 @@
                         <!-- Featured image -->
                         <div class="bg-image hover-overlay shadow-1-strong ripple rounded-5 mb-4"
                             data-mdb-ripple-color="light">
-                            <img src="{{ $news->image_path }}" class="img-fluid" style="min-width:100%;" />
+                            <img src="{{ asset($news->image_path) }}" class="img-fluid" style="min-width:100%;" />
                             <a href="#!">
                                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                             </a>
@@ -33,10 +33,10 @@
                         <!-- Article data -->
                         <div class="row mb-3">
                             <div class="col-6">
-                                <a href="" class="text-info">
+                          
                                     <i class="fas fa-plane"></i>
                                     {{ $news->category ==1 ? "News" : "Activities" }}
-                                </a>
+                               
                             </div>
 
                             <div class="col-6 text-end">
@@ -45,13 +45,13 @@
                         </div>
 
                         <!-- Article title and description -->
-                        <a href="" class="text-dark">
+                    
                             <h3>{{ $news->title }}</h3>
 
                             <p>
                               {{$news->description}}
                             </p>
-                        </a>
+                       
 
                         <hr />
 
@@ -62,7 +62,7 @@
                         <a href="{{ route('news.detail', $item->id) }}" class="text-dark">
                             <div class="row mb-4 border-bottom pb-2">
                                 <div class="col-3">
-                                    <img src="{{ $item->image_path }}"
+                                    <img src="{{ asset($item->image_path) }}"
                                         class="img-fluid shadow-1-strong rounded" alt="Hollywood Sign on The Hill" />
                                 </div>
 

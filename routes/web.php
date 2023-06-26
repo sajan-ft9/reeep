@@ -8,14 +8,20 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PublicController;
-
+use App\Http\Controllers\WorkingController;
 
 Route::group([PublicController::class], function(){
     Route::get('/',[PublicController::class,'index']);
     Route::get('/about',[PublicController::class,'about']);
     Route::get('/news',[PublicController::class,'news']);
     Route::get('/news/{news}',[PublicController::class,'newsDetail'])->name('news.detail');
+    Route::get('/working',[PublicController::class,'working']);
+    Route::get('/working/{working}',[PublicController::class,'workingDetail'])->name('working.detail');
+    Route::get('/partner',[PublicController::class,'partner']);
+    Route::get('/partner/{partner}',[PublicController::class,'partnerDetail'])->name('partner.detail');
+
 });
 
 Route::get('/download_links', function () {
@@ -28,9 +34,7 @@ Route::get('/news/1', function () {
 Route::get('/knowledge', function () {
     return view('knowledge');
 });
-Route::get('/working-areas/1', function () {
-    return view('working-areas');
-});
+
 Route::get('/partner/1', function () {
     return view('partner');
 });
@@ -63,6 +67,12 @@ Route::prefix('backend')->name('backend.')->middleware('auth')->group(function()
 
     // news
     Route::resource('news',NewsController::class);
+
+    // working
+    Route::resource('working',WorkingController::class);
+
+    // partner
+    Route::resource('partner',PartnerController::class);
 
 
 

@@ -75,18 +75,29 @@
 
                     <div class="form-group">
                         {!! Form::label('image_path', 'Image') !!}
-                        {!! Form::file('image_path', null, ['class' => 'form-control', 'placeholder' => 'Choose Image']) !!}
+                        {!! Form::file('image_path', [ 'onchange' => 'loadFile(event)']) !!}
+                        <img class="mt-2" id="output" alt="">
                         @error('image_path')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+                    <button type="submit" class="btn btn-success">Save</button>
 
                 </div>
-                <div class="mt-3">
-                    <button type="submit" class="btn btn-success">Save</button>
-                </div>
+
                 {!! Form::close() !!}
             </div>
         </div>
     </section>
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.height = "100"
+            output.width = "100"
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
 @endsection

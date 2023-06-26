@@ -62,8 +62,8 @@
     <!-- ======= Hero Section ======= -->
     <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            @foreach ($banners as $item)
-                <div class="carousel-item active">
+            @foreach ($data['banners'] as $item)
+                <div class="carousel-item active" data-bs-interval="3000">
                     <img src="{{ asset($item->image_path) }}" class="d-block w-100" style="height: 100vh"
                         alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -115,119 +115,42 @@
         <div class="m-5 py-5">
 
             <div id="working" class="section-title">
-                <h2>Working Areas</h2>
+                <h2>Working Areas
+                    <a href="/working">
+                        <span style="float: right" class="fs-5 text-success">View More</span>
+                    </a>
+                </h2>
+
             </div>
 
             <div class="row">
-                <div class="col-lg col-md-5 mb-2">
-                    <div class="card flip">
-                        <div class="face front-face">
-                            <a href="working-areas/1">
-                                <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
-                                    alt="" class="profile">
-                            </a>
-                            <div class="pt-3 text-uppercase name">
-                                Robert Garrison
-                            </div>
-                            <div class="designation">Android Developer</div>
-                        </div>
-                        <div class="face back-face">
-                            <span class="fas fa-quote-left"></span>
-                            <a href="working-areas/1">
-                                <div class="testimonial">
-                                    I made bacck the purchase price in just 48 hours! Thank you for making it pain less,
-                                    pleasant.
-                                    The service was execellent. I will refer everyone I know.
+                @foreach ($data['workings'] as $item)
+                    <div class="col-lg col-md-5 mb-2">
+                        <div class="card flip">
+                            <div class="face front-face">
+                                <a href="{{ route('working.detail', $item->id) }}">
+                                    <img src="{{ $item->image_path }}" alt="" class="profile">
+                                </a>
+                                <div class="card-title px-2 mt-2">
+                                    <p>
+                                        {{ $item->title }}
+                                    </p>
                                 </div>
-                            </a>
-                            <span class="fas fa-quote-right"></span>
+
+                            </div>
+                            <div class="face back-face">
+                                <span class="fas fa-quote-left"></span>
+                                <a href="{{ route('working.detail', $item->id) }}">
+                                    <div class="testimonial">
+                                        {{ $item->description }}
+                                    </div>
+                                </a>
+                                <span class="fas fa-quote-right"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg col-md-5 mb-2">
-                    <div class="card flip">
-                        <div class="face front-face">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
-                                alt="" class="profile">
-                            <div class="pt-3 text-uppercase name">
-                                Robert Garrison
-                            </div>
-                            <div class="designation">Android Developer</div>
-                        </div>
-                        <div class="face back-face">
-                            <span class="fas fa-quote-left"></span>
-                            <div class="testimonial">
-                                I made bacck the purchase price in just 48 hours! Thank you for making it pain less,
-                                pleasant.
-                                The service was execellent. I will refer everyone I know.
-                            </div>
-                            <span class="fas fa-quote-right"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg col-md-5 mb-2">
-                    <div class="card flip">
-                        <div class="face front-face">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
-                                alt="" class="profile">
-                            <div class="pt-3 text-uppercase name">
-                                Robert Garrison
-                            </div>
-                            <div class="designation">Android Developer</div>
-                        </div>
-                        <div class="face back-face">
-                            <span class="fas fa-quote-left"></span>
-                            <div class="testimonial">
-                                I made bacck the purchase price in just 48 hours! Thank you for making it pain less,
-                                pleasant.
-                                The service was execellent. I will refer everyone I know.
-                            </div>
-                            <span class="fas fa-quote-right"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg col-md-5 mb-2">
-                    <div class="card flip">
-                        <div class="face front-face">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
-                                alt="" class="profile">
-                            <div class="pt-3 text-uppercase name">
-                                Robert Garrison
-                            </div>
-                            <div class="designation">Android Developer</div>
-                        </div>
-                        <div class="face back-face">
-                            <span class="fas fa-quote-left"></span>
-                            <div class="testimonial">
-                                I made bacck the purchase price in just 48 hours! Thank you for making it pain less,
-                                pleasant.
-                                The service was execellent. I will refer everyone I know.
-                            </div>
-                            <span class="fas fa-quote-right"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg col-md-5 mb-2">
-                    <div class="card flip">
-                        <div class="face front-face">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
-                                alt="" class="profile">
-                            <div class="pt-3 text-uppercase name">
-                                Robert Garrison
-                            </div>
-                            <div class="designation">Android Developer</div>
-                        </div>
-                        <div class="face back-face">
-                            <span class="fas fa-quote-left"></span>
-                            <div class="testimonial">
-                                I made bacck the purchase price in just 48 hours! Thank you for making it pain less,
-                                pleasant.
-                                The service was execellent. I will refer everyone I know.
-                            </div>
-                            <span class="fas fa-quote-right"></span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
 
         </div>
@@ -242,26 +165,28 @@
                 </h2>
             </div>
             <div class="row">
-                @foreach ($news as $item)
+                @foreach ($data['news'] as $item)
                     <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                         <div class="card news text-white card-has-bg click-col"
                             style="background-image:url('{{ asset($item->image_path) }}');">
                             <div class="card-img-overlay d-flex flex-column">
                                 <div class="card-body">
-                                    
-                                        <small
-                                            class="card-meta mb-2">{{ $item->category == 1 ? 'News' : 'Activities' }}</small>
-                                        <h4 class="card-title mt-0 "><a class="text-white"
-                                                herf="#">{{ $item->title }}</a></h4>
-                                        <small><i class="far fa-clock"></i>{{ $item->updated_at }}</small>
-                                   
+
+                                    <small
+                                        class="card-meta mb-2">{{ $item->category == 1 ? 'News' : 'Activities' }}</small>
+                                    <h4 class="card-title mt-0 "><a class="text-white"
+                                            herf="#">{{ $item->title }}</a></h4>
+                                    <small><i class="far fa-clock"></i>{{ $item->updated_at }}</small>
+
 
                                 </div>
                                 <div class="card-footer">
                                     <div class="media">
                                         <div class="media-body">
                                             <small>{{ $item->updated_at }}</small>
-                                            <small> <a class="btn btn-primary mx-4" href="{{ route('news.detail', $item->id) }}"> Read more </a></small>
+                                            <small> <a class="btn btn-primary mx-4"
+                                                    href="{{ route('news.detail', $item->id) }}"> Read more
+                                                </a></small>
                                         </div>
                                     </div>
                                 </div>
@@ -277,37 +202,31 @@
         <div class="mx-4 my-5">
 
             <div id="partners" class="section-title">
-                <h2>Partners</h2>
+                <h2>Partners
+                    <a href="/partner">
+                        <span style="float: right" class="fs-5 text-success">View More</span>
+                    </a>
+                </h2>
             </div>
 
             <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
 
-                <div class="col  mb-3">
-                    <div class="client-logo">
-                        <a href="/partner/1">
-                            <img src="assets/img/giz2.jpg" class="spins" height="150" width="100%"
-                                alt="">
-                        </a>
+                @foreach ($data['partners'] as $item)
+                    <div class="col mb-3">
+                            <div class="card-title">
+                                <h5>
+                                    {{ $item->title }}
+                                </h5>
+                                
+                        </div>
+                        <div class="client-logo">
+                            <a href="/partner/1">
+                                <img src="{{ $item->image_path }}" class="spins" height="250" style="border-radius: 30px"
+                                    alt="">
+                            </a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col mb-3">
-                    <div class="client-logo">
-                        <img src="assets/img/gov.png" class="spins" height="150" alt="">
-                    </div>
-                </div>
-
-                <div class="col  mb-3">
-                    <div class="client-logo">
-                        <img src="assets/img/office.JPG" class="spins" height="150" alt="">
-                    </div>
-                </div>
-
-                <div class="col  mb-3">
-                    <div class="client-logo">
-                        <img src="assets/img/nepal-germany.jpg" class="spins" height="150" alt="">
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>

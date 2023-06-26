@@ -32,7 +32,11 @@
             </div>
 
             <div class="card-body">
-                {!! Form::open(['route' => ['backend.news.update', $news->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data' ]) !!}
+                {!! Form::open([
+                    'route' => ['backend.news.update', $news->id],
+                    'method' => 'PUT',
+                    'enctype' => 'multipart/form-data',
+                ]) !!}
                 <div class="">
                     <div class="row">
                         <div class="col">
@@ -50,8 +54,8 @@
                                 <label for="">Category</label>
                                 <select name="category" class="form-control" id="" required>
                                     <option value="">Select a Category</option>
-                                    <option value="1" {{ $news->category == 1 ?  "selected": ""  }}>News</option>
-                                    <option value="2" {{ $news->category == 2 ?  "selected": ""  }}>Activities</option>
+                                    <option value="1" {{ $news->category == 1 ? 'selected' : '' }}>News</option>
+                                    <option value="2" {{ $news->category == 2 ? 'selected' : '' }}>Activities</option>
                                 </select>
                                 @error('category')
                                     <small class="text-danger">{{ $message }}</small>
@@ -77,18 +81,27 @@
 
                     <div class="form-group">
                         {!! Form::label('image_path', 'Image') !!}
-                        {!! Form::file('image_path', null, ['class' => 'form-control', 'placeholder' => 'Choose Image']) !!}
+                        {!! Form::file('image_path', ['onchange' => 'loadFile(event)']) !!}
+                        <img class="mt-2" id="output" alt="">
                         @error('image_path')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-
-                </div>
-                <div class="mt-3">
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>
                 {!! Form::close() !!}
             </div>
         </div>
     </section>
+    <script>
+        var loadFile = function(event) {
+          var output = document.getElementById('output');
+          output.height = "100"
+          output.width = "100"
+          output.src = URL.createObjectURL(event.target.files[0]);	
+          output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+          }
+        };
+    </script>
 @endsection

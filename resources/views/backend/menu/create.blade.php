@@ -63,7 +63,7 @@
                                     @include('partials.option', ['item' => $item, 'parent_id'=>"", 'depth' => 0])
                                 @endforeach
                             </select>
-                            @error('order')
+                            @error('parent_id')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3">
+                <div class="m-3">
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>
                 {!! Form::close() !!}

@@ -79,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3">
+                <div class="m-3">
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>
                 {!! Form::close() !!}

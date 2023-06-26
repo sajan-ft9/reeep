@@ -4,7 +4,7 @@
     @endphp
 
     @foreach ($menuItems as $index => $menuItem)
-        @if ($index < 6)
+        @if ($index < 4)
             <li class="dropdown">
                 <a href="/{{ $menuItem->slug }}">
                     <span>{{ $menuItem->name }}</span>
