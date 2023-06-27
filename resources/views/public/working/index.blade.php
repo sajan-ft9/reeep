@@ -26,7 +26,7 @@
                         <div class="col-lg-6 col-md-5 mb-4">
                             <div class="card flip">
                                 <div class="face front-face">
-                                    <a href="working-areas/1">
+                                    <a href="{{ route('working.detail', $item->id) }}">
                                         <img src="{{ $item->image_path }}"
                                             alt="" class="profile">
                                     </a>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="face back-face">
                                     <span class="fas fa-quote-left"></span>
-                                    <a href="working-areas/1">
+                                    <a href="{{ route('working.detail', $item->id) }}">
                                         <div class="testimonial">
                                             {{$item->description}}
                                         </div>

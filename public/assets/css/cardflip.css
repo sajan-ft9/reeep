@@ -1,7 +1,11 @@
 /* gallery */
 
+.gallery-overlay{
+  background-color: rgb(0,0,0,.4);
+
+}
 .gallery-overlay:hover{
-  background-color: rgb(0,0,0,.3);
+  background-color: rgb(0,0,0,.5);
 
 }
 

@@ -172,12 +172,9 @@
                             <div class="card-img-overlay d-flex flex-column">
                                 <div class="card-body">
 
-                                    <small
-                                        class="card-meta mb-2">{{ $item->category == 1 ? 'News' : 'Activities' }}</small>
+                                    <p class="card-meta mb-2">{{ $item->category == 1 ? 'News' : 'Activities' }}</p>
                                     <h4 class="card-title mt-0 "><a class="text-white"
                                             herf="#">{{ $item->title }}</a></h4>
-                                    <small><i class="far fa-clock"></i>{{ $item->updated_at }}</small>
-
 
                                 </div>
                                 <div class="card-footer">
@@ -213,16 +210,16 @@
 
                 @foreach ($data['partners'] as $item)
                     <div class="col mb-3">
-                            <div class="card-title">
-                                <h5>
-                                    {{ $item->title }}
-                                </h5>
-                                
+                        <div class="card-title">
+                            <h5>
+                                {{ $item->title }}
+                            </h5>
+
                         </div>
                         <div class="client-logo">
                             <a href="/partner/1">
-                                <img src="{{ $item->image_path }}" class="spins" height="250" style="border-radius: 30px"
-                                    alt="">
+                                <img src="{{ $item->image_path }}" class="spins" height="250"
+                                    style="border-radius: 30px" alt="">
                             </a>
                         </div>
                     </div>
@@ -245,120 +242,71 @@
             </div>
 
             <div class="row gallery">
-                <div class="col-lg-4 col-md-12 mb-4 mb-lg-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <div class="card bg-dark text-white">
-                        <div style="height: 300px;">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/slides/017.webp" class="card-img h-100 rounded"
-                                alt="Stony Beach" />
-                        </div>
-                        <div class="card-img-overlay gallery-overlay">
-                            <h5 class="card-title">Card title</h5>
-                            <!-- <p class="card-text">
-                This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.
-              </p>
-              <p class="card-text">Last updated 3 mins ago</p> -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-12 mb-4 mb-lg-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <div class="card bg-dark text-white">
-                        <div style="height: 300px;">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/slides/017.webp" class="card-img h-100 rounded"
-                                alt="Stony Beach" />
-                        </div>
-                        <div class="card-img-overlay gallery-overlay">
-                            <h5 class="card-title">Card title</h5>
-                            <!-- <p class="card-text">
-                This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.
-              </p>
-              <p class="card-text">Last updated 3 mins ago</p> -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-12 mb-4 mb-lg-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <div class="card bg-dark text-white">
-                        <div style="height: 300px;">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/slides/017.webp" class="card-img h-100 rounded"
-                                alt="Stony Beach" />
-                        </div>
-                        <div class="card-img-overlay gallery-overlay">
-                            <h5 class="card-title">Card title</h5>
-                            <!-- <p class="card-text">
-                This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.
-              </p>
-              <p class="card-text">Last updated 3 mins ago</p> -->
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Gallery</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="carouselExampleDark" class="carousel carousel-dark slide"
-                                data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                                        aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                                        aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <img src="assets/img/gov.png" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <!-- <h5>First slide label</h5> -->
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="assets/img/giz2.jpg" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <!-- <h5>Second slide label</h5> -->
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/img/hero-bg2.JPG" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <!-- <h5>Third slide label</h5> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+                @foreach ($data['albums'] as $item)
+                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-4" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ $item->id }}">
+                        <div class="card bg-dark text-white">
+                            <div style="height: 350px;">
+                                <img src="{{ $item->gallery[0]->image_path }}" class="card-img h-100 rounded"
+                                    alt="Stony Beach" />
+                            </div>
+                            <div class="card-img-overlay gallery-overlay">
+                                <h3 class="card-title">{{ $item->name }}</h3>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Alubm: {{ $item->name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="carouselExampleDark{{ $item->id }}" class="carousel carousel-dark slide"
+                                        data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach ($item->gallery as $pic)
+                                                <div class="carousel-item active" data-bs-interval="2000">
+                                                    <img src="{{ $pic->image_path }}" class="d-block w-100"
+                                                        alt="...">
+                                                    <div class="bg-dark">
+                                                        <p class="text-white px-5">
+                                                            {{ $pic->description }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleDark{{ $item->id }}" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleDark{{ $item->id }}" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
 
+
+
         </div>
+
         {{-- knowledge --}}
         <div class="mx-5 my-5">
 
@@ -440,65 +388,7 @@
             {{--
       </div> --}}
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Gallery</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="carouselExampleDark" class="carousel carousel-dark slide"
-                                data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                                        aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                                        aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <img src="assets/img/gov.png" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <!-- <h5>First slide label</h5> -->
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="assets/img/giz2.jpg" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <!-- <h5>Second slide label</h5> -->
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="assets/img/hero-bg2.JPG" class="d-block w-100" alt="...">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <!-- <h5>Third slide label</h5> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
         </div>
 

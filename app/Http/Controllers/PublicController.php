@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\About;
+use App\Models\Album;
 use App\Models\Banner;
+use App\Models\Gallery;
 use App\Models\Partner;
 use App\Models\Working;
 use Illuminate\Http\Request;
@@ -17,6 +19,7 @@ class PublicController extends Controller
         $data['news'] = News::take(3)->get();
         $data['workings'] = Working::take(5)->get();
         $data['partners'] = Partner::take(3)->get();
+        $data['albums'] = Album::take(3)->get();
         return view('public.index', compact('data','about'));
     }
     
@@ -63,6 +66,17 @@ class PublicController extends Controller
     public function partnerDetail(Partner $partner){
 
         return view('public.partner.detail', compact('partner'));
+    }
+
+    public function gallery(){
+        $albums = Album::get();
+       
+        return view('public.gallery.index', compact('albums'));
+    }
+
+    public function galleryDetail(Album $gallery){
+
+        return view('public.gallery.detail', compact('gallery'));
     }
 
 
