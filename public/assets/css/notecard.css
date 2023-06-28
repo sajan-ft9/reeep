@@ -1,6 +1,5 @@
 
 .card-big-shadow {
-    max-width: 320px;
     position: relative;
 }
 
@@ -23,7 +22,6 @@
 
 .notecard:hover {
     scale: 1.1;
-    z-index: 999;
     border-radius: 70px 0;
     transition: 1s;
 }

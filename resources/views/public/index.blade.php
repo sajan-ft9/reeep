@@ -266,8 +266,8 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="carouselExampleDark{{ $item->id }}" class="carousel carousel-dark slide"
-                                        data-bs-ride="carousel">
+                                    <div id="carouselExampleDark{{ $item->id }}"
+                                        class="carousel carousel-dark slide" data-bs-ride="carousel">
                                         <div class="carousel-inner">
                                             @foreach ($item->gallery as $pic)
                                                 <div class="carousel-item active" data-bs-interval="2000">
@@ -282,12 +282,14 @@
                                             @endforeach
                                         </div>
                                         <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carouselExampleDark{{ $item->id }}" data-bs-slide="prev">
+                                            data-bs-target="#carouselExampleDark{{ $item->id }}"
+                                            data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Previous</span>
                                         </button>
                                         <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carouselExampleDark{{ $item->id }}" data-bs-slide="next">
+                                            data-bs-target="#carouselExampleDark{{ $item->id }}"
+                                            data-bs-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="visually-hidden">Next</span>
                                         </button>
@@ -318,72 +320,24 @@
                 </h2>
             </div>
             {{-- <div class="container"> --}}
-
+                @php
+                    $color = ['green', 'brown', 'blue'];
+                @endphp
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card-big-shadow">
-                        <div class="card notecard card-just-text" style="height: 300px; overflow-y:hidden"
-                            data-background="color" data-color="blue" data-radius="none">
-                            <div class="content">
-                                <h6 class="category">Knowledge</h6>
-                                <h4 class="title"><a href="/knowledge">Click here to show</a></h4>
-                                <p class="description">What all of these have in common is that they're pulling
-                                    information out of the
-                                    app or the service and making it relevant to the moment Lorem ipsum dolor sit amet
-                                    consectetur
-                                    adipisicing elit. Quaerat illo itaque quis iusto rem dolor aspernatur vel quos
-                                    inventore sed? Minus
-                                    at quae itaque rerum voluptas dolore? Ipsum, cum rerum? </p>
+                @foreach ($data['knowledges'] as $key => $item)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card-big-shadow">
+                                <div class="card notecard card-just-text" style="height: 300px; overflow-y:hidden"
+                                    data-background="color" data-color="{{ $color[$key] }}" data-radius="none">
+                                    <div class="content">
+                                        <h4 class="title">{{ $item->title }}</h4>
+                                        <h4 class="category"><a href="{{ asset($item->image_path) }}" download>Download File</a></h4>
+                                        <p class="description py-2">{{$item->description}} </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card-big-shadow">
-                        <div class="card notecard card-just-text" style="height: 300px; overflow-y:hidden"
-                            data-background="color" data-color="green" data-radius="none">
-                            <div class="content">
-                                <h6 class="category">Best cards</h6>
-                                <h4 class="title"><a href="#">Green Card</a></h4>
-                                <p class="description">What all of these have in common is that they're pulling
-                                    information out of the
-                                    app or the service and making it relevant to the moment Lorem ipsum dolor sit amet
-                                    consectetur
-                                    adipisicing elit. Quaerat illo itaque quis iusto rem dolor aspernatur vel quos
-                                    inventore sed? Minus
-                                    at quae itaque rerum voluptas dolore? Ipsum, cum rerum? </p>
-                            </div>
-                        </div> <!-- end card -->
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card-big-shadow">
-                        <div class="card notecard card-just-text" style="height: 300px; overflow-y:hidden"
-                            data-background="color" data-color="green" data-radius="none">
-                            <div class="content">
-                                <h6 class="category">Best cards</h6>
-                                <h4 class="title"><a href="#">Green Card</a></h4>
-                                <p class="description">What all of these have in common is that they're pulling
-                                    information out of the
-                                    app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div> <!-- end card -->
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card-big-shadow">
-                        <div class="card notecard card-just-text" style="height: 300px; overflow-y:hidden"
-                            data-background="color" data-color="orange" data-radius="none">
-                            <div class="content">
-                                <h6 class="category">PDF</h6>
-                                <h4 class="title"><a href="#">List page</a></h4>
-                                <p class="description">What all of these have in common is that they're pulling
-                                    information out of the
-                                    app or the service and making it relevant to the moment. </p>
-                            </div>
-                        </div> <!-- end card -->
-                    </div>
-                </div>
+                @endforeach
             </div>
             {{--
       </div> --}}
@@ -510,7 +464,7 @@
         </div>
     </footer>
 
-    <div id="preloader"></div>
+
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 

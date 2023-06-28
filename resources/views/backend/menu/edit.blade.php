@@ -72,7 +72,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             {!! Form::label('order', 'Order') !!}
-                            {!! Form::number('order', null, ['class' => 'form-control', 'placeholder' => 'order']) !!}
+                            {!! Form::number('order', $menu->order, ['class' => 'form-control', 'placeholder' => 'order']) !!}
                             @error('order')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

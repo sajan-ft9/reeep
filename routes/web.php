@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PublicController;
@@ -25,6 +26,7 @@ Route::group([PublicController::class], function(){
     Route::get('/partner/{partner}',[PublicController::class,'partnerDetail'])->name('partner.detail');
     Route::get('/gallery',[PublicController::class,'gallery']);
     Route::get('/gallery/{gallery}',[PublicController::class,'galleryDetail'])->name('gallery.detail');
+    Route::get('/knowledge',[PublicController::class,'knowledge']);
 
 });
 
@@ -35,9 +37,9 @@ Route::get('/download_links', function () {
 Route::get('/news/1', function () {
     return view('public.news.detail');
 });
-Route::get('/knowledge', function () {
-    return view('knowledge');
-});
+// Route::get('/knowledge', function () {
+//     return view('knowledge');
+// });
 
 Route::get('/partner/1', function () {
     return view('partner');
@@ -83,6 +85,9 @@ Route::prefix('backend')->name('backend.')->middleware('auth')->group(function()
   
     // album
     Route::resource('album',AlbumController::class);
+
+    // knowledge
+    Route::resource('knowledge',KnowledgeController::class);
 
 
 

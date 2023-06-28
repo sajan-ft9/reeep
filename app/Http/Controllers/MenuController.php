@@ -76,7 +76,7 @@ class MenuController extends Controller
         // }
         $formFields['slug'] = Str::slug($request->name);
         $menu->update($formFields);
-        return redirect(route('backend.menu.index'))->with('success', 'Menu updated successfully');
+        return redirect(route('backend.menu.show',$menu->parent->id))->with('success', 'Menu updated successfully');
     }
 
     public function destroy(Menu $menu)

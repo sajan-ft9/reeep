@@ -7,6 +7,7 @@ use App\Models\About;
 use App\Models\Album;
 use App\Models\Banner;
 use App\Models\Gallery;
+use App\Models\Knowledge;
 use App\Models\Partner;
 use App\Models\Working;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class PublicController extends Controller
         $data['workings'] = Working::take(5)->get();
         $data['partners'] = Partner::take(3)->get();
         $data['albums'] = Album::take(3)->get();
+        $data['knowledges'] = Knowledge::take(4)->get();
         return view('public.index', compact('data','about'));
     }
     
@@ -79,6 +81,10 @@ class PublicController extends Controller
         return view('public.gallery.detail', compact('gallery'));
     }
 
-
+    public function knowledge(){
+        $knowledges = Knowledge::get();
+       
+        return view('public.knowledge.index', compact('knowledges'));
+    }
 
 }
