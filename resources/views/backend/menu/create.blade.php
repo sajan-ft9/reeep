@@ -70,6 +70,18 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="">Menu Location</label>
+                            <select name="menu_location" class="form-control" required>
+                               <option value="0">Header</option>
+                               <option value="1">Footer</option>
+                            </select>
+                            @error('menu_location')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             {!! Form::label('order', 'Order') !!}
                             {!! Form::number('order', null, ['class' => 'form-control', 'placeholder' => 'order']) !!}
                             @error('order')

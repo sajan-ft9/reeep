@@ -11,7 +11,7 @@ class Gallery extends Model
     protected $guarded=[];
 
     public function album(){
-        return $this->belongsTo(Album::class,'album_id','id');
+        return $this->belongsTo(Album::class);
     }
 
 }

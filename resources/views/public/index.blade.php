@@ -243,14 +243,16 @@
 
             <div class="row gallery">
                 @foreach ($data['albums'] as $item)
+                @if(count($item->gallery) > 0)
                     <div class="col-lg-4 col-md-12 mb-4 mb-lg-4" data-bs-toggle="modal"
                         data-bs-target="#exampleModal{{ $item->id }}">
                         <div class="card bg-dark text-white">
                             <div style="height: 350px;">
-                                <img src="{{ $item->gallery[0]->image_path }}" class="card-img h-100 rounded"
+                                <img src="{{ asset($item->gallery[0]->image_path) }}" class="card-img h-100 rounded"
                                     alt="Stony Beach" />
                             </div>
                             <div class="card-img-overlay gallery-overlay">
+
                                 <h3 class="card-title">{{ $item->name }}</h3>
                             </div>
                         </div>
@@ -302,11 +304,9 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
-
-
-
         </div>
 
         {{-- knowledge --}}
@@ -365,25 +365,23 @@
 
                         <div class="mt-2">
                             <h4>Location:</h4>
-                            <p>Ministry of Energy
-                                Singh Durbar, Kathmandu, Nepal</p>
+                            <p>{{ $location->address }}</p>
                             <div class="row">
                                 <div class="col">
                                     <h4>Email:</h4>
-                                    <p>info@moen.gov.np</p>
+                                    <p>{{ $location->email }}</p>
 
                                 </div>
                                 <div class="col">
                                     <h4>Website:</h4>
-                                    <p>www.moen.gov.np</p>
+                                    <p>{{ $location->website }}</p>
 
                                 </div>
                             </div>
                             <div class="col">
                                 <h4>Call:</h4>
-                                <p>T +977 (1) 4211516</p>
-                                <p>F +977 (1) 4211510</p>
-
+                                <p>{{ $location->call }}</p>
+                        
                             </div>
 
                         </div>
@@ -391,7 +389,8 @@
 
                     <div class="col-lg-6 mt-5 mt-lg-0">
 
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <form action="{{ route('contact') }}" method="post" role="form" class="php-email-form">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
@@ -423,7 +422,7 @@
     </main>
 
     <footer id="footer">
-        <div class="container">
+        {{-- <div class="container">
             <div class="row mb-5">
                 <div class="col">
                     <h3>REEEP</h3>
@@ -440,9 +439,9 @@
                 <div class="col">
                     <h3>Contacts</h3>
                     <ul type="none">
-                        <li>Email: info@moen.gov.np</li>
-                        <li>Website: www.moen.gov.np</li>
-                        <li>Tel: +977 (1) 4211516</li>
+                        <li>Email: {{ $location->email }}</li>
+                        <li>Website: {{ $location->website }}</li>
+                        <li>Tel: {{ $location->call }}</li>
                     </ul>
                 </div>
                 <div class="col text-start">
@@ -461,13 +460,15 @@
                 <a href="#"><i class="bx bxl-linkedin"></i></a>
             </div>
 
-        </div>
+        </div> --}}
+        @include('partials.footer')
     </footer>
-
+    <div class="col-4" style="position:fixed;bottom:10px; right:20px; z-index:999">
+        <x-alert2 />
+    </div>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
-
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>

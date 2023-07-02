@@ -20,15 +20,18 @@
                 <!-- Gallery -->
                 <div class="row">
                     @foreach ($albums as $item)
-                        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                            <h2>{{ $item->name }}</h2>
-                            <div style="height: 250px">
-                                <a href="{{ route('gallery.detail', $item->id) }}"><img style="height: 100%" src="{{ $item->gallery[0]->image_path }}" class="w-100 shadow-1-strong rounded mb-4"
-                                    alt="Boat on Calm Water" />
-                                </a>
-                            </div>
+                        @if (count($item->gallery) > 0)
+                            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                                <h2>{{ $item->name }}</h2>
+                                <div style="height: 250px">
+                                    <a href="{{ route('gallery.detail', $item->id) }}"><img style="height: 100%"
+                                            src="{{ $item->gallery[0]->image_path }}"
+                                            class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+                                    </a>
+                                </div>
 
-                        </div>
+                            </div>
+                        @endif
                     @endforeach
 
                 </div>

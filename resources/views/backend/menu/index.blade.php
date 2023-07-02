@@ -38,6 +38,8 @@
                 </div>
             </div>
             <div class="card-body">
+                @if (count($menus) > 0)
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -50,37 +52,50 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($menus as $menu)
-                            <tr>
-                                <td>{{ $menu->name }}</td>
-                                <td>{{$menu->parent->name ?? "-"}}</td>
-                                <td>{{$menu->order}}</td>
-                                <td>{{ $menu->slug }}</td>
-                                <td>
-                                    <form action="{{ route('backend.menu.toggleStatus', $menu->id) }}" method="POST">
-                                        @csrf
-                                        @method('patch')
-                                        <button
-                                            class="btn {{ $menu->status == 1 ? 'btn-success' : 'btn-danger' }}">{{ $menu->status == 1 ? 'ON' : 'OFF' }}</button>
-                                    </form>
-                                </td>
-                                <td class="d-flex">
-                                    <a href="{{ route('backend.menu.show', $menu->id) }}" class="text-decoration-none fs-4">
-                                        <div class="btn btn-success mr-1"><i class="fas fa-eye"></i></div>
-                                    </a>
+                            @foreach ($menus as $menu)
+                                <tr>
+                                    <td>{{ $menu->name }}</td>
+                                    <td>{{ $menu->parent->name ?? '-' }}</td>
+                                    <td>{{ $menu->order }}</td>
+                                    <td>{{ $menu->slug }}</td>
+                                    <td>
+                                        <form action="{{ route('backend.menu.toggleStatus', $menu->id) }}" method="POST">
+                                            @csrf
+                                            @method('patch')
+                                            <button
+                                                class="btn {{ $menu->status == 1 ? 'btn-success' : 'btn-danger' }}">{{ $menu->status == 1 ? 'ON' : 'OFF' }}</button>
+                                        </form>
+                                    </td>
+                                    <td class="d-flex">
+                                        <a href="{{ route('backend.menu.show', $menu->id) }}"
+                                            class="text-decoration-none fs-4">
+                                            <div class="btn btn-success mr-1"><i class="fas fa-eye"></i></div>
+                                        </a>
 
-                                    <div class="btn btn-warning text-white mr-1"><a href="{{ route('backend.menu.edit', $menu->id) }}"><i class="fas fa-edit"></i></a></div>
-                                    <form action="{{ route('backend.menu.destroy', $menu->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                        <div class="btn btn-warning text-white mr-1"><a
+                                                href="{{ route('backend.menu.edit', $menu->id) }}"><i
+                                                    class="fas fa-edit"></i></a></div>
+                                        <form action="{{ route('backend.menu.destroy', $menu->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
 
-                            </tr>
-                        @endforeach
+                                </tr>
+                            @endforeach
+                        @else
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error: </strong>
+                            No child found
+                            <a href="{{ url()->previous() }}">Go back</a>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                        @endif
 
                     </tbody>
                 </table>

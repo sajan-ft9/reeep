@@ -58,45 +58,7 @@
     @yield('content')
 
     <footer id="footer">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col">
-                    <h3>REEEP</h3>
-                    <p>Joint effort to go Green by Nepal and Germany</p>
-                    <div class="row">
-                        <div class="col">
-                            <img src="{{ asset('assets/img/giz.png') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="col">
-                            <img src="{{ asset('assets/img/nepal-germany.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <h3>Contacts</h3>
-                    <ul type="none">
-                        <li>Email: info@moen.gov.np</li>
-                        <li>Website: www.moen.gov.np</li>
-                        <li>Tel: +977 (1) 4211516</li>
-                    </ul>
-                </div>
-                <div class="col text-start">
-                    <h3>More Links</h3>
-                    <ul type="none">
-                        <li><a class="nav-link" href="#">Knowledge and Resources</a></li>
-                        <li><a class="nav-link" href="#">Downloads and Links</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="social-links">
-                <a href="#"><i class="bx bxl-twitter"></i></a>
-                <a href="#"><i class="bx bxl-facebook"></i></a>
-                <a href="#"><i class="bx bxl-instagram"></i></a>
-                <a href="#"><i class="bx bxl-skype"></i></a>
-                <a href="#"><i class="bx bxl-linkedin"></i></a>
-            </div>
-
-        </div>
+        @include('partials.footer')
     </footer>
 
 

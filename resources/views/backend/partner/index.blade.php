@@ -52,7 +52,7 @@
                             <tr>
                                 <td><img src="{{ asset($item->image_path) }}" alt="" height="50"></td>
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->description }}</td>
+                                <td>{{ substr($item->description,0,50) }}</td>
                                 <td>
                                     <div class="d-flex">
                                         <a class="btn btn-warning text-white mr-1"

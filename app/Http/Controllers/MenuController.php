@@ -33,12 +33,18 @@ class MenuController extends Controller
         $formFields = $request->validate([
             'name' => 'required|string|unique:menus,name',
             'status' => 'required|boolean',
-            'order' => 'required|numeric'
+            'order' => 'required|numeric',
+            'menu_location' => 'required|numeric'
         ]);
 
         if ($request->parent_id) {
 
             $formFields['parent_id'] = $request->parent_id;
+            Menu::find($request->parent_id)->update(
+                [
+                    'menu_location' => 0
+                ]
+                );
         }
 
         $formFields['slug'] = Str::slug($request->name);
@@ -66,8 +72,13 @@ class MenuController extends Controller
         $formFields = $request->validate([
             'name' => 'required|string|unique:menus,name,' . $menu->id . ',id',
             'status' => 'required|boolean',
-            'order' => 'required|numeric'
+            'order' => 'required|numeric',
+            'menu_location' =>'required|numeric'
         ]);
+
+        if(count($menu->children)> 0 && $request->menu_location == 1){
+            return redirect()->back()->with('danger', 'Menu with children cannot be kept at footer');
+        }
         if ($request->parent_id) {
             $formFields['parent_id'] = $request->parent_id;
         }
@@ -76,19 +87,21 @@ class MenuController extends Controller
         // }
         $formFields['slug'] = Str::slug($request->name);
         $menu->update($formFields);
-        return redirect(route('backend.menu.show',$menu->parent->id))->with('success', 'Menu updated successfully');
+        if($menu->parent_id){
+
+            return redirect(route('backend.menu.show', $menu->parent->id))->with('success', 'Menu updated successfully');
+        }
+        return redirect(route('backend.menu.index'))->with('success', 'Menu updated successfully');
+
     }
 
     public function destroy(Menu $menu)
     {
-        $menu_childs = Menu::where('parent_id', "$menu->id")->get();
-        foreach ($menu_childs as $item) {
-            $item->update(
-                [
-                    'parent_id' => null
-                ]
-            );
-        }
+        Menu::where('parent_id', "$menu->id")->update(
+            [
+                'parent_id' => $menu->parent_id
+            ]
+        );
         $menu->delete();
         return redirect()->back()->with('success', 'Menu deleted successfully');
     }
