@@ -51,9 +51,14 @@
                         @foreach ($abouts as $item)
                             <tr>
                                 <td><img src="{{ asset($item->image_path) }}" alt="" height="50"></td>
-                                <td>{{ $item->title }}</td>
-                                <td>{{ $item->description }}</td>
-
+                                <td>{{ $item->title['en'] }}
+                                    <br>
+                                    {{ $item->title['ne'] }}
+                                </td>
+                                <td>{{ $item->description['en'] }}
+                                    <br>
+                                    {{ $item->description['ne'] }}
+                                </td>
                                 <td>
                                     <div class="d-flex">
                                         <a class="btn btn-warning text-white mr-1"

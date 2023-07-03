@@ -47,6 +47,14 @@
                     <nav id="navbar" class="navbar order-last order-lg-0">
                         @include('partials.homemenu')
                     </nav><!-- .navbar -->
+                    <form action="{{ route('changeLang') }}" method="get">
+                        <div class="">
+                            <select class="changeLang text-white" name="lang" style="background: none;border:none;">
+                                <option style="background: #2D8C59" value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>EN</option>
+                                <option style="background: #2D8C59" value="ne" {{ session()->get('locale') == 'ne' ? 'selected' : '' }}>NP</option>
+                            </select>
+                        </div>
+                    </form>
                     <a href="/" class="logo"><img class="img-fluid d-none   d-sm-none d-md-block"
                             src="assets/img/nepal-germany.jpg" alt=""></a>
                     <a href="/" class="logo"><img class="img-fluid d-none   d-sm-none d-md-block"
@@ -62,8 +70,8 @@
     <!-- ======= Hero Section ======= -->
     <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            @foreach ($data['banners'] as $item)
-                <div class="carousel-item active" data-bs-interval="3000">
+            @foreach ($data['banners'] as $key => $item)
+                <div class="carousel-item {{$key == 0 ? 'active' : '' }}" data-bs-interval="3000">
                     <img src="{{ asset($item->image_path) }}" class="d-block w-100" style="height: 100vh"
                         alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -100,8 +108,8 @@
                     </div>
                     <div class="col wow fadeIn">
 
-                        <h2 class="mb-4">{{ $about->title }}</h2>
-                        <p class="mb-4">{{ substr($about->description, 0, 350) }}....
+                        <h2 class="mb-4">{{ $about->title[App::getLocale()] }}</h2>
+                        <p class="mb-4">{{ mb_substr($about->description[App::getLocale()],0,200) }}....
                         </p>
 
                         <a class="get-started-btn  rounded-pill py-3 px-5" href="/about">Explore More</a>
@@ -271,8 +279,8 @@
                                     <div id="carouselExampleDark{{ $item->id }}"
                                         class="carousel carousel-dark slide" data-bs-ride="carousel">
                                         <div class="carousel-inner">
-                                            @foreach ($item->gallery as $pic)
-                                                <div class="carousel-item active" data-bs-interval="2000">
+                                            @foreach ($item->gallery as $key=>$pic)
+                                                <div class="carousel-item {{$key == 0 ? 'active' : '' }}" data-bs-interval="2000">
                                                     <img src="{{ $pic->image_path }}" class="d-block w-100"
                                                         alt="...">
                                                     <div class="bg-dark">
@@ -469,6 +477,8 @@
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -477,7 +487,16 @@
 
 
     <script src="assets/js/main.js"></script>
-
+    <script type="text/javascript">
+  
+        var url = "{{ route('changeLang') }}";
+      
+        $(".changeLang").change(function(e){
+            
+            window.location.href = url + "?lang="+ $(this).val();
+        });
+      
+    </script>
 </body>
 
 </html>

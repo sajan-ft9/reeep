@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
             $table->string('image_path');
-            $table->string('title');
-            $table->longText('description');
+            $table->json('title');
+            $table->json('description');
             $table->timestamps();
         });
     }

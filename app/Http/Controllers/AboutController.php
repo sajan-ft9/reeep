@@ -39,8 +39,10 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'title'=> 'required|string|max:100',
-            'description'=> 'required|string',
+            'title.en'=> 'required|string|max:255',
+            'title.ne'=> 'required|string|max:255',
+            'description.en'=> 'required|string',
+            'description.ne'=> 'required|string',
             'image_path' => 'required|mimes:png,jpg,jpeg|max:8096',
         ]);
 
@@ -84,9 +86,11 @@ class AboutController extends Controller
     public function update(Request $request, About $about)
     {
         $formFields = $request->validate([
-            'title'=> 'required|string|max:100',
-            'description'=> 'required|string',
-            'image_path' => 'mimes:png,jpg,jpeg|max:8096',
+            'title.en'=> 'required|string|max:255',
+            'title.ne'=> 'required|string|max:255',
+            'description.en'=> 'required|string',
+            'description.ne'=> 'required|string',
+            'image_path' => 'required|mimes:png,jpg,jpeg|max:8096',
         ]);
 
         if ($request->image_path) {

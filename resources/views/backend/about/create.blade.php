@@ -37,18 +37,32 @@
                 <div class="">
 
                     <div class="form-group">
-                        {!! Form::label('title', 'Title') !!}
-                        {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
-                        @error('title')
+                        {!! Form::label('title', 'Title (Nepali)') !!}
+                        {!! Form::text('title[ne]', null, ['class' => 'form-control', 'placeholder' => 'title in Nepali']) !!}
+                        @error('title[ne]')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('title', 'Title (English)') !!}
+                        {!! Form::text('title[en]', null, ['class' => 'form-control', 'placeholder' => 'title in English']) !!}
+                        @error('title[en]')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
 
                     <div class="form-group">
-                        {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-                        @error('description')
+                        {!! Form::label('description', 'Description (Nepali)') !!}
+                        {!! Form::textarea('description[ne]', null, ['class' => 'form-control']) !!}
+                        @error('description[ne]')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('description', 'Description (English)') !!}
+                        {!! Form::textarea('description[en]', null, ['class' => 'form-control']) !!}
+                        @error('description[en]')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

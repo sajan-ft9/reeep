@@ -17,8 +17,9 @@ class LangController extends Controller
     {
         return view('backend.lang.create');
     }
-  
-    public function store(Request $request){
+
+    public function store(Request $request)
+    {
         $validatedData = $request->validate([
             'title.en' => 'required',
             'title.ne' => 'required',
@@ -27,16 +28,16 @@ class LangController extends Controller
         ]);
 
         Lang::create([
-            'title' => json_encode([
+            'title' => [
                 'en' => $request->input('title')['en'],
                 'ne' => $request->input('title')['ne'],
-            ], JSON_UNESCAPED_UNICODE),
-            'description' => json_encode([
+            ],
+            'description' => [
                 'en' => $request->input('description')['en'],
                 'ne' => $request->input('description')['ne'],
-            ], JSON_UNESCAPED_UNICODE)
+            ]
         ]);
-        
+
 
         return redirect()->route('backend.lang.index')->with('success', 'language created successfully.');
     }
@@ -46,12 +47,12 @@ class LangController extends Controller
     {
         App::setLocale($request->lang);
         session()->put('locale', $request->lang);
-  
         return redirect()->back();
     }
 
-    public function get(){
-        Lang::get();
+    public function get()
+    {
+        $data =  Lang::get();
+        return view('try', compact('data'));
     }
-
 }

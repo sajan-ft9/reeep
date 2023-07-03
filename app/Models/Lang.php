@@ -13,5 +13,9 @@ class Lang extends Model
     use HasFactory;
     protected $fillable = ['title', 'description'];
 
+    protected $casts = [
+        'title' => 'json',
+        'description' => 'json',
+    ];
   
 }

@@ -22,11 +22,13 @@ use App\Http\Controllers\LangController;
 
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+Route::get('lang/get', [LangController::class, 'get']);
 
 
 
 Route::group([PublicController::class], function () {
     Route::get('/', [PublicController::class, 'index']);
+    Route::get('/home', [PublicController::class, 'index']);
     Route::get('/about', [PublicController::class, 'about']);
     Route::get('/news', [PublicController::class, 'news']);
     Route::get('/news/{news}', [PublicController::class, 'newsDetail'])->name('news.detail');
@@ -96,4 +98,5 @@ Route::prefix('backend')->name('backend.')->middleware('auth')->group(function (
 
     // language
     Route::resource('lang', LangController::class);
+
 });

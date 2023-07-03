@@ -9,6 +9,7 @@ use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\Knowledge;
+use App\Models\Lang;
 use App\Models\Location;
 use App\Models\Partner;
 use App\Models\Working;
@@ -18,7 +19,7 @@ class PublicController extends Controller
 {
     public function index(){
         $data['banners'] = Banner::get();
-        $about = About::take(1)->first();
+        $about = About::first();
         $data['news'] = News::take(3)->get();
         $data['workings'] = Working::take(5)->get();
         $data['partners'] = Partner::take(3)->get();

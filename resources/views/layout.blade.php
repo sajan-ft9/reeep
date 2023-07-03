@@ -44,6 +44,14 @@
                     <nav id="navbar" class="navbar order-last order-lg-0">
                         @include('partials.homemenu')
                     </nav><!-- .navbar -->
+                    <form action="{{ route('changeLang') }}" method="get">
+                        <div class="">
+                            <select class="changeLang" name="lang">
+                                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>EN</option>
+                                <option value="ne" {{ session()->get('locale') == 'ne' ? 'selected' : '' }}>NP</option>
+                            </select>
+                        </div>
+                    </form>
                     <a href="/" class="logo"><img class="img-fluid d-none   d-sm-none d-md-block"
                             src="assets/img/nepal-germany.jpg" alt=""></a>
                     <a href="/" class="logo"><img class="img-fluid d-none   d-sm-none d-md-block"
@@ -66,6 +74,7 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -75,7 +84,16 @@
 
 
     <script src="{{ asset('assets/js/main.js') }}"></script>
-
+    <script type="text/javascript">
+  
+        var url = "{{ route('changeLang') }}";
+      
+        $(".changeLang").change(function(e){
+            
+            window.location.href = url + "?lang="+ $(this).val();
+        });
+      
+    </script>
 </body>
 
 </html>

@@ -32,31 +32,46 @@
             </div>
 
             <div class="card-body">
-                {!! Form::open(['route' => ['backend.about.update', $about->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data' ]) !!}
+                {!! Form::open(['route' => 'backend.about.store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ]) !!}
+                @csrf
                 <div class="">
 
                     <div class="form-group">
-                        {!! Form::label('title', 'Title') !!}
-                        {!! Form::text('title', $about->title, ['class' => 'form-control', 'placeholder' => 'title']) !!}
-                        @error('title')
+                        {!! Form::label('title', 'Title (Nepali)') !!}
+                        {!! Form::text('title[ne]', $about->title['ne'], ['class' => 'form-control', 'placeholder' => 'title in Nepali']) !!}
+                        @error('title[ne]')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('title', 'Title (English)') !!}
+                        {!! Form::text('title[en]',$about->title['en'], ['class' => 'form-control', 'placeholder' => 'title in English']) !!}
+                        @error('title[en]')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
 
                     <div class="form-group">
-                        {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', $about->description, ['class' => 'form-control']) !!}
-                        @error('description')
+                        {!! Form::label('description', 'Description (Nepali)') !!}
+                        {!! Form::textarea('description[ne]',$about->title['ne'], ['class' => 'form-control']) !!}
+                        @error('description[ne]')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('description', 'Description (English)') !!}
+                        {!! Form::textarea('description[en]', $about->title['en'], ['class' => 'form-control']) !!}
+                        @error('description[en]')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
 
                     <div class="form-group">
                         <label for="">Old Image</label>
-                        <img src="{{ asset($about->image_path) }}" height="100" alt="">
+                        <img src="{{ asset($about->image_path) }}" height="100" width="100" alt="">
                     </div>
-
                     <div class="form-group">
                         {!! Form::label('image_path', 'Image') !!}
                         {!! Form::file('image_path', ['onchange' => 'loadFile(event)']) !!}
